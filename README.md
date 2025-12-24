@@ -367,9 +367,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📧 Contact
 
-**Your Name** - [@yourtwitter](https://twitter.com/yourtwitter) - your.email@example.com
+**Your Name** - Thathsara Rajapaksha - ntratofficial@gmail.com
 
-Project Link: [https://github.com/yourusername/credit-risk-engine](https://github.com/yourusername/credit-risk-engine)
+Project Link: [https://github.com/NTRajapaksha/intelligent-credit-risk-system](https://github.com/NTRajapaksha/intelligent-credit-risk-system)
 
 ---
 
@@ -377,4 +377,3 @@ Project Link: [https://github.com/yourusername/credit-risk-engine](https://githu
 
 If this project helped you, please consider giving it a star!
 
-[![Star History Chart](https://api.star-history.com/svg?repos=yourusername/credit-risk-engine&type=Date)](https://star-history.com/#yourusername/credit-risk-engine&Date)
