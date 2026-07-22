@@ -278,6 +278,29 @@ credit-risk-engine/
 
 ---
 
+## 🔍 Codebase Walkthrough: What Happens in Each File
+
+### 1. Model Training & Data Engineering
+**`notebooks/credit-risk.ipynb`** & **`train_model.py`**
+- **Purpose:** The core data science laboratory where the model is built.
+- **What it does:**
+  1. **Streaming & Conversion:** Uses Polars to stream the massive 2.2M row CSV file and keep RAM usage low.
+  2. **Feature Selection (IV):** Calculates Information Value (IV) for all variables and selects the top 13 strongest predictors.
+  3. **Binning (WoE):** Uses `scorecardpy` to generate binning rules (e.g., how to group different income ranges into risk buckets) and converts the raw data into WoE values.
+  4. **Model Training:** Trains a LightGBM classifier on the WoE-transformed data.
+  5. **Export:** Saves the trained LightGBM model (`lgb_credit_model.pkl`) and the crucial WoE binning rules (`woe_bins.pkl`) so they can be used by the live application.
+
+### 2. The User Interface & AI Underwriter
+**`app.py`**
+- **Purpose:** A Streamlit dashboard that acts as the front-end application for loan officers.
+- **What it does:**
+  1. **Loading Assets:** It loads the pre-trained LightGBM model and the WoE binning rules.
+  2. **Pipeline Execution:** When the user clicks "Calculate", it applies the exact same WoE transformations to the input that were used in training. It then passes this transformed data to the LightGBM model to get a raw default probability.
+  3. **Score Calibration:** Translates the raw probability into a FICO-style score (300-850) and assigns a decision tier.
+  4. **LLM Explanation:** Constructs a prompt containing the applicant's data and the decision, sending it to the local Llama 3.2 model to generate a professional underwriting explanation, which is displayed on the screen.
+
+---
+
 ## 🐛 Troubleshooting
 
 ### Issue: "Model files not found"
@@ -367,7 +390,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📧 Contact
 
-**Your Name** - Thathsara Rajapaksha - ntratofficial@gmail.com
+Thathsara Rajapaksha - ntratofficial@gmail.com
 
 Project Link: [https://github.com/NTRajapaksha/intelligent-credit-risk-system](https://github.com/NTRajapaksha/intelligent-credit-risk-system)
 
